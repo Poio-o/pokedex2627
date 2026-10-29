@@ -11,15 +11,16 @@ class PokemonRemoteDataSource
         val response = _api.readAllPokemon()
         val pokemons = mutableListOf<Pokemon>()
         if (response.isSuccessful) {
-            // TODO PARSEAR EL CUERPO A EL MODEL Pokemon
             val body = response.body()!!
             for(item in body.results) {
                 val pokemon = readPokemonByName(item.name)
-                pokemons.add(pokemon!!)
+                if (pokemon != null) {
+                    pokemons.add(pokemon)
+                }
             }
         }
         else {
-            // Mostrar un errror!
+            throw Exception("Error al obtener la lista")
         }
         return pokemons
     }
