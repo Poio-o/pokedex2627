@@ -20,7 +20,7 @@ sealed interface PokeListUiState {
 
 @HiltViewModel
 class PokeListViewModel @Inject constructor(
-    private val repository: PokemonDataSource
+    private val repository: PokemonRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<PokeListUiState>(PokeListUiState.Loading)
